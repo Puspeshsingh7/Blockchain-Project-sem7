@@ -1,0 +1,167 @@
+<html>
+<head>
+  <title>Coronavirus</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="bundle.js"></script>
+<meta charset="utf-8" />
+
+<style>
+body {
+  height: 100%;
+  margin: 0;
+  background-image: url(./bg3.jpg);
+  background-size: cover;
+  background-position: center;
+  color: black;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+p {
+  color:red;
+  font-size: 18px;
+}
+
+
+.in {
+    background-color: black;
+    color: #fff;
+    padding: 30px;
+    width: 800px;
+    margin: 50px auto;
+}
+
+.ipc {
+    border-radius: 0;
+    outline: none;
+    border-color: #fff;
+}
+
+.bb {
+    background-color: #ffffff;
+    text-transform: uppercase;
+}
+
+a {
+    color: #fff;
+}
+
+.shd {
+    text-shadow: #000 1px 1px 10px;
+}
+
+.hd {
+    text-shadow: #000 1px 1px 10px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+    padding: 10px;
+}
+</style>
+
+</head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#"><b>COVID-19 INDIA</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="http://localhost:3000/" target="_blank"><b>Upload file to ipfs</b> <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container">
+
+    <div class="in">
+      <h1>How to use?</h1>
+      <p>1. Upload the covid19 proof such as medical documents etc on the upload document link at top-left.</p>
+      <p>2. Enter the details in "Enter new(update) state/city/country ". Provide correct patient_id ( Aadhar card), Doctor_id, hash of file uploaded in step 1. </p>
+      <p>3. Your entry will be added to the blockchain. You can also see the covid details of any state/city/country, see all covid19 patients records for that place and can also delete any state/city/country.</p>
+      <p>NOTE-: The state/city/country name spelling should be according to <a href="https://en.wikipedia.org/wiki/Lists_of_cities" target="_blank">https://en.wikipedia.org/wiki/Lists_of_cities</a>.</p>
+
+    </div>
+      <div class="row">
+        <div class="col-sm-12">
+            <h1><b>Covid19_blockchain</b></h1>
+          <form id="New_state_or_update_state">
+            <h2><b>ENTER new(update) state/city/country</b></h2>
+            <div class="form-group">
+                <label for="New_state-state_name"><b>State Name</b></label>
+                <input id="New_state-state_name" type="text" class="form-control"></input>
+                <label for="New_state-activecases"><b>Active cases</b></label>
+                <input id="New_state-activecases" type="number" class="form-control"></input>
+                <label for="New_state-effectedcases"><b>Affected cases</b></label>
+                <input id="New_state-effectedcases" type="number" class="form-control"></input>
+                <label for="New_state-Deaths"><b>Death</b></label>
+                <input id="New_state-Deaths" type="number" class="form-control"></input>
+                <label for="New_state-Recovered"><b>Recovered</b></label>
+                <input id="New_state-Recovered" type="number" class="form-control"></input>
+                <label for="New_state-patient_id"><b>Patient_id</b></label>
+                <input id="New_state-patient_id" type="text" class="form-control"></input>
+                <label for="New_state-doctor_id"><b>doctor_id</b></label>
+                <input id="New_state-doctor_id" type="text" class="form-control"></input>
+                <label for="New_state-file_hash"><b>file_hash</b></label>
+                <input id="New_state-file_hash" type="text" class="form-control"></input>
+            </div>
+            <button type="submit" class="btn btn-primary"><b>Submit</b></button>
+            <p id="New_state_or_update_state-result"></p>
+          </form>
+
+          <hr>
+
+          <form id="Search_statename">
+            <h2><b>Enter the name of state/city/country to be searched</b></h2>
+            <div class="form-group">
+              <label for="Search_statename-state_name"><b>State Name</b></label>
+              <input id="Search_statename-state_name" type="text" class="form-control"></input>
+            </div>
+            <button type="submit" class="btn btn-primary"><b>Submit</b></button>
+            <p id="Search_statename-result"></p>
+          </form>
+
+          <hr>
+
+
+          <form id="Get_details_for_statename">
+            <h2><b>Enter the name of state/city/country for which details of patients is to be searched</b></h2>
+            <div class="form-group">
+              <label for="Get_details_for_statename-state_name"><b>State Name</b></label>
+              <input id="Get_details_for_statename-state_name" type="text" class="form-control"></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <p id="Get_details_for_statename-result"></p>
+          </form>
+
+          <hr>
+
+
+
+
+          <form id="Delete_state">
+            <h2><b>Delete state/city/country</b></h2>
+            <div class="form-group">
+              <label for="Delete_state-state_name"></label>
+              <input id="Delete_state-state_name" type="text" class="form-control"></input>
+            </div>
+            <button type="submit" class="btn btn-primary"><b>Submit</b></button>
+            <p id="Delete_state-result"></p>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
