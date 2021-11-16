@@ -6,3 +6,5 @@ Run npm install
 Then, run node app.js 
 
 Make sure you have >=14 Node version.
+
+ALso,please create a empty files directory here.
